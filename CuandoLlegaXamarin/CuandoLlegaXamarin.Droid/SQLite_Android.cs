@@ -34,9 +34,10 @@ namespace CuandoLlegaXamarin.Droid
             var path = Path.Combine(documentsPath, sqliteFilename);
 
             // This is where we copy in the prepopulated database
-            Console.WriteLine(path);
+            Console.WriteLine("RELOCO " + path);
             if (!File.Exists(path))
             {
+                Console.WriteLine("Aca estoy");
                 var s = Forms.Context.Resources.OpenRawResource(Resource.Raw.CuandoLlega);  // RESOURCE NAME ###
 
                 // create a write stream

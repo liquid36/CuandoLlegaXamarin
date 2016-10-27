@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using CuandoLlegaXamarin.Modelos;
 
 namespace CuandoLlegaXamarin
 {
@@ -17,7 +18,13 @@ namespace CuandoLlegaXamarin
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
             // create the tables
-            //database.CreateTable<TodoItem>();
+            database.CreateTable<Colectivo>();
         }
+
+        public IEnumerable<Colectivo> GetItems()
+        {
+            return (from i in database.Table<Colectivo>() select i).ToList();
+        }
+
     }
 }

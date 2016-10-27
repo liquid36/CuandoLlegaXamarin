@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CuandoLlegaXamarin.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,11 @@ namespace CuandoLlegaXamarin
     {
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            IEnumerable<Colectivo> list = App.Database.GetItems();
+
+            myLabel.Text = list.ToArray()[5].nombre;
+
         }
     }
 }

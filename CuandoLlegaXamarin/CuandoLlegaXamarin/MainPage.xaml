@@ -4,8 +4,10 @@
              xmlns:local="clr-namespace:CuandoLlegaXamarin"
              x:Class="CuandoLlegaXamarin.MainPage">
 
-  <Label Text="Welcome to Xamarin Forms!"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
+  <Label x:Name="myLabel" 
+         Text="Welcome to Xamarin Forms!"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" 
+         />
 
 </ContentPage>
