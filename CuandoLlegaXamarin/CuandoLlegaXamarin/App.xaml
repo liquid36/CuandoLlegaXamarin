@@ -5,6 +5,15 @@
   <Application.Resources>
 
     <!-- Application resource dictionary -->
+    <ResourceDictionary>
+      <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Fill" />  
+        <Setter Property="BorderColor" Value="Lime" />
+        <Setter Property="BorderRadius" Value="5" />
+        <Setter Property="BorderWidth" Value="5" /> 
+        <Setter Property="TextColor" Value="Teal" />
+      </Style>
+    </ResourceDictionary>
 
   </Application.Resources>
 </Application>

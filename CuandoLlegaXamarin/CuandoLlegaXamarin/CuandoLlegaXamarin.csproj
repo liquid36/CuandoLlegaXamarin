@@ -49,9 +49,13 @@
     <Compile Include="Modelos\Parada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="viewModels\BusquedaTabModel.cs" />
+    <Compile Include="viewModels\CalleViewModel.cs" />
     <Compile Include="viewModels\FavoritosViewModel.cs" />
     <Compile Include="Views\BusquedaTab.xaml.cs">
       <DependentUpon>BusquedaTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CalleView.xaml.cs">
+      <DependentUpon>CalleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FavoritosView.xaml.cs">
       <DependentUpon>FavoritosView.xaml</DependentUpon>
@@ -104,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\BusquedaTab.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CalleView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

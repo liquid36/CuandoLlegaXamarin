@@ -2,5 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CuandoLlegaXamarin.Views.BusquedaTab">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <StackLayout Padding="0,20,0,0">
+      <Button Text="Por Calle" Command="{Binding porCalleCommand}" Style="{StaticResource buttonStyle}" />
+
+      <Button Text="Por Colectivo" Command="{Binding porColectivoCommand}" Style="{StaticResource buttonStyle}" />
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

@@ -5,31 +5,37 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace CuandoLlegaXamarin.viewModels
 {
     
     class BusquedaTabModel : INotifyPropertyChanged
     {
-        public string MainText { get; set; }
+        public ICommand porCalleCommand { protected set; get; }
+        public ICommand porColectivoCommand { protected set; get; } 
 
         public BusquedaTabModel ()
-        {
-            MainText = "Gato";
-            OnPropertyChanged("MainText");
+        { 
+            this.porCalleCommand = new Command(() =>
+            { 
+            });
+
+            this.porColectivoCommand = new Command(() =>
+            {
+
+            });
+
         }
 
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged(string propertyName)
         {
-            var changed = PropertyChanged;
-
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(name));
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
