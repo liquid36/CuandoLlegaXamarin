@@ -27,8 +27,8 @@ namespace CuandoLlegaXamarin
         {
             InitializeComponent();
 
-            MainPage = new CuandoLlegaXamarin.MainPage();
-                        
+            MainPage =  new CuandoLlegaXamarin.MainPage() ;
+            MainPage.Title = "Cuando Llega";            
         }
 
 

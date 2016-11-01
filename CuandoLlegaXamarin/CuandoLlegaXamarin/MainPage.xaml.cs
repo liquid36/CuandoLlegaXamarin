@@ -8,14 +8,19 @@ using Xamarin.Forms;
 
 namespace CuandoLlegaXamarin
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : TabbedPage
     {
         public MainPage()
         {
-            InitializeComponent();            
-            IEnumerable<Colectivo> list = App.Database.GetItems();
+            InitializeComponent();
+            var tab1 = new NavigationPage(new Views.BusquedaTab());
+            tab1.Title = "BUSQUEDA";
 
-            myLabel.Text = list.ToArray()[5].nombre;
+            var tab2 = new NavigationPage(new Views.FavoritosView());
+            tab2.Title = "FAVORITOS";
+
+            Children.Add(tab1);
+            Children.Add(tab2); 
 
         }
     }
