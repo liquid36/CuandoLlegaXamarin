@@ -77,12 +77,14 @@ namespace CuandoLlegaXamarin
         {
             lock (locker)
             {
-                return ( from i in database.Table<Calle>()
-                         where (name == null || i.nombre.Contains(name))
-                         orderby i.nombre
-                         select i  
-                         
-                        ).ToList();
+ 
+                return ( from calle in database.Table<Calle>()
+                         //orderby calle.nombre
+                         join parada in database.Table<Parada>()
+                         on calle.id equals parada.calle
+                         where ( name == null || calle.nombre.Contains(name) ) 
+                         select calle
+                        ).ToList(); 
             }
         }
 
