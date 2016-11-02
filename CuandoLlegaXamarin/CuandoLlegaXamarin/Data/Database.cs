@@ -79,7 +79,9 @@ namespace CuandoLlegaXamarin
             {
                 return ( from i in database.Table<Calle>()
                          where (name == null || i.nombre.Contains(name))
+                         orderby i.nombre
                          select i  
+                         
                         ).ToList();
             }
         }

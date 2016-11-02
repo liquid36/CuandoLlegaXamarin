@@ -19,7 +19,8 @@ namespace CuandoLlegaXamarin.viewModels
         public BusquedaTabModel ()
         { 
             this.porCalleCommand = new Command(() =>
-            { 
+            {
+                App.FormsNavigation.PushAsync(new Views.CalleView());
             });
 
             this.porColectivoCommand = new Command(() =>

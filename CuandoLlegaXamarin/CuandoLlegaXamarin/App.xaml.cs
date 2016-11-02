@@ -23,6 +23,23 @@ namespace CuandoLlegaXamarin
             }
         }
 
+        public static INavigation FormsNavigation
+        {
+            get
+            {
+                var tabController = App.Current.MainPage as TabbedPage;
+
+                if (tabController != null)
+                {
+                    return tabController.CurrentPage.Navigation;
+                }
+                else
+                {
+                    return App.Current.MainPage.Navigation;
+                }
+            }
+        }
+
         public App()
         {
             InitializeComponent();

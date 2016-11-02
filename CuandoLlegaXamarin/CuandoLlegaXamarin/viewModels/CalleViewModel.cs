@@ -12,7 +12,7 @@ namespace CuandoLlegaXamarin.viewModels
     public class CalleViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        ObservableCollection<Calle> calles = new ObservableCollection<Calle>();
+        public ObservableCollection<Calle> calles { get; set; }
 
         public CalleViewModel()
         {

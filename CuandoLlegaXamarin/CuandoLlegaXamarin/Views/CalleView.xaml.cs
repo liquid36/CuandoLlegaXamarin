@@ -16,7 +16,7 @@ namespace CuandoLlegaXamarin.Views
             InitializeComponent();
             model = new viewModels.CalleViewModel();
             BindingContext = model;
-            Title = "Calles";
+            Title = "Calles";            
         }
     }
 }
