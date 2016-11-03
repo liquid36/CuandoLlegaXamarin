@@ -16,7 +16,7 @@ namespace CuandoLlegaXamarin.viewModels
 
         public CalleViewModel()
         {
-            calles = new ObservableCollection<Calle>(App.Database.GetCalles("ENTRE"));
+            calles = new ObservableCollection<Calle>(App.Database.GetCalles());
         }
 
     }

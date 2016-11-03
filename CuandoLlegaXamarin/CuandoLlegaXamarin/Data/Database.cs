@@ -77,7 +77,12 @@ namespace CuandoLlegaXamarin
         {
             lock (locker)
             {
-                return database.Query<Calle>("select calles.* from paradas inner join calles on calles.id = paradas.idCalle where calles.desc like ? group by paradas.idCalle order by calles.desc", '%' + name + '%');
+                return database.Query<Calle>(
+                    @"select calles.* from paradas 
+                      inner join calles on calles.id = paradas.idCalle 
+                      where calles.desc like ? 
+                      group by paradas.idCalle 
+                      order by calles.desc", '%' + name + '%');
             }
         }
 
@@ -85,7 +90,12 @@ namespace CuandoLlegaXamarin
         {
             lock (locker)
             {
-                return database.Query<Calle>("select calles.* from paradas inner join calles on calles.id = paradas.idCalle where calles.desc like ? and paradas.idColectivo = ?  group by paradas.idCalle order by calles.desc", '%' + name + '%', colectivo);
+                return database.Query<Calle>(
+                    @"select calles.* from paradas 
+                      inner join calles on calles.id = paradas.idCalle 
+                      where calles.desc like ? and paradas.idColectivo = ?  
+                      group by paradas.idCalle 
+                      order by calles.desc", '%' + name + '%', colectivo);
             }
         }
 
