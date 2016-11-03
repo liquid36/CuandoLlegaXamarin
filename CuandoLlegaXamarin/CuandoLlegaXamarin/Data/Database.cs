@@ -72,19 +72,12 @@ namespace CuandoLlegaXamarin
                 return database.Table<Calle>().FirstOrDefault(calle => calle.id == id);
             }
         }
-
-        public IEnumerable<Calle> GetCalles(string name = null)
+        
+        public IEnumerable<Calle> GetCalles(string name = "")
         {
             lock (locker)
             {
- 
-                return ( from calle in database.Table<Calle>()
-                         //orderby calle.nombre
-                         join parada in database.Table<Parada>()
-                         on calle.id equals parada.calle
-                         where ( name == null || calle.nombre.Contains(name) ) 
-                         select calle
-                        ).ToList(); 
+                return database.Query<Calle>("select calles.* from paradas inner join calles on calles.id = paradas.idCalle where calles.desc like ? group by paradas.idCalle order by calles.desc", '%' + name + '%');
             }
         }
 
@@ -92,12 +85,7 @@ namespace CuandoLlegaXamarin
         {
             lock (locker)
             {
-                return (from i in database.Table<Calle>()
-                        join p in database.Table<Parada>() 
-                        on i.id equals p.calle
-                        where (name == null || i.nombre.Contains(name)) && p.colectivo == colectivo
-                        select i
-                        ).ToList();
+                return database.Query<Calle>("select calles.* from paradas inner join calles on calles.id = paradas.idCalle where calles.desc like ? and paradas.idColectivo = ?  group by paradas.idCalle order by calles.desc", '%' + name + '%', colectivo);
             }
         }
 
