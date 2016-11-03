@@ -86,7 +86,7 @@ namespace CuandoLlegaXamarin
             }
         }
 
-        public IEnumerable<Calle> GetCalles(int colectivo, string name = null)
+        public IEnumerable<Calle> GetCalles(int colectivo, string name = "")
         {
             lock (locker)
             {
@@ -99,10 +99,36 @@ namespace CuandoLlegaXamarin
             }
         }
 
+        public IEnumerable<Calle> GetIntersecciones(int colectivo, int calle, string name = "")
+        {
+            lock (locker)
+            {
+                return database.Query<Calle>(
+                    @"select calles.* from paradas 
+                      inner join calles on calles.id = paradas.idInter 
+                      where calles.desc like ? and paradas.idColectivo = ?  and paradas.idCalle = ?
+                      group by paradas.idInter 
+                      order by calles.desc", '%' + name + '%', colectivo, calle);
+            }
+        }
+
+        public IEnumerable<Calle> GetIntersecciones(int calle, string name = "")
+        {
+            lock (locker)
+            {
+                return database.Query<Calle>(
+                    @"select calles.* from paradas 
+                      inner join calles on calles.id = paradas.idInter 
+                      where calles.desc like ? and  paradas.idCalle = ?
+                      group by paradas.idInter 
+                      order by calles.desc", '%' + name + '%', calle);
+            }
+        }
+
 
         /*
          * 
-         * CALLES QUERYS
+         * PARADAS QUERYS
          * 
          */
 

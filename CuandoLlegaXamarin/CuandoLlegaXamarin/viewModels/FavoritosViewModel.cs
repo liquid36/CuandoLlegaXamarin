@@ -18,7 +18,5 @@ namespace CuandoLlegaXamarin.viewModels
             
             MainText = "Favoritos " + App.Database.GetParadas().Count().ToString();
         }
-
-
     }
 }

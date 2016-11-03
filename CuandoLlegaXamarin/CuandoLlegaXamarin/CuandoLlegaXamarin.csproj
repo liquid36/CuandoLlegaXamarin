@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Database.cs" />
+    <Compile Include="Interfaces\IListClick.cs" />
     <Compile Include="Interfaces\ISQLite.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -48,7 +49,6 @@
     <Compile Include="Modelos\Geoposition.cs" />
     <Compile Include="Modelos\Parada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="viewModels\BusquedaTabModel.cs" />
     <Compile Include="viewModels\CalleViewModel.cs" />
     <Compile Include="viewModels\FavoritosViewModel.cs" />
     <Compile Include="Views\BusquedaTab.xaml.cs">

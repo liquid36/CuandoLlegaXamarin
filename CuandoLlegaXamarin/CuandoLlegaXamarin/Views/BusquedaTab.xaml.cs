@@ -8,15 +8,30 @@ using Xamarin.Forms;
 
 namespace CuandoLlegaXamarin.Views
 {
-    public partial class BusquedaTab : ContentPage
-    {
-        private viewModels.BusquedaTabModel model;
+    public partial class BusquedaTab : ContentPage, Interfaces.IListClick
+    { 
         public BusquedaTab()
         {
-            InitializeComponent();
-            model = new viewModels.BusquedaTabModel();
-            BindingContext = model;
-            Title = "Cuando Llega";
+            InitializeComponent(); 
+
+            btnCalle.Clicked += BtnCalle_Clicked;
+            btnColectivo.Clicked += BtnColectivo_Clicked;
+        }
+
+        private void BtnColectivo_Clicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnCalle_Clicked(object sender, EventArgs e)
+        {
+            App.FormsNavigation.PushAsync(new Views.CalleView(this));
+        }
+
+        public void onItemClick(object item)
+        {
+            var calle = item as Modelos.Calle;
+            App.Current.MainPage.DisplayAlert("Item Selected", calle.nombre, "Ok");
         }
     }
 }

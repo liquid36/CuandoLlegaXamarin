@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CuandoLlegaXamarin.Views.BusquedaTab">
+             x:Class="CuandoLlegaXamarin.Views.BusquedaTab"
+             x:Title="Cuando Llega">
   <ContentPage.Content>
     <StackLayout Padding="0,20,0,0">
-      <Button Text="Por Calle" Command="{Binding porCalleCommand}" Style="{StaticResource buttonStyle}" />
+      <Button Text="Por Calle"   x:Name="btnCalle" Style="{StaticResource buttonStyle}" />
 
-      <Button Text="Por Colectivo" Command="{Binding porColectivoCommand}" Style="{StaticResource buttonStyle}" />
+      <Button Text="Por Colectivo" x:Name="btnColectivo"  Style="{StaticResource buttonStyle}" />
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using CuandoLlegaXamarin.Modelos;
+using CuandoLlegaXamarin.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +13,17 @@ namespace CuandoLlegaXamarin.viewModels
     public class CalleViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<Calle> calles { get; set; }
+        public ObservableCollection<Calle> calles { get; set; } 
 
         public CalleViewModel()
-        {
+        { 
             calles = new ObservableCollection<Calle>(App.Database.GetCalles());
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }
