@@ -13,8 +13,11 @@ namespace CuandoLlegaXamarin.Modelos
 
         [SQLite.Column("name")]
         public string nombre { get; set; }
+
         public string bandera { get; set; }
+
         public string linea { get; set; }
+
         public int cl { get; set; }
 
     }

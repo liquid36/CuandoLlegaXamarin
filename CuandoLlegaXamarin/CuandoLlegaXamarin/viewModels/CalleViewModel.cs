@@ -14,10 +14,24 @@ namespace CuandoLlegaXamarin.viewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Calle> calles { get; set; } 
+        public Calle calle { get; set; }
 
-        public CalleViewModel()
-        { 
-            calles = new ObservableCollection<Calle>(App.Database.GetCalles());
+        public CalleViewModel(Calle calle = null, Colectivo colectivo = null)
+        {
+            int? cc = null;
+            if (colectivo != null)
+            {
+                cc = colectivo.id;
+            }
+
+            if (calle == null)
+            {
+                calles = new ObservableCollection<Calle>(App.Database.GetCalles(cc));
+            }
+            else
+            {
+                calles = new ObservableCollection<Calle>(App.Database.GetIntersecciones(cc, calle.id));
+            }
         }
 
         protected void OnPropertyChanged(string propertyName)

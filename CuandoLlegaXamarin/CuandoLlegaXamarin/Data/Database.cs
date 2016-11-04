@@ -49,13 +49,12 @@ namespace CuandoLlegaXamarin
         {
             lock (locker)
             {
-                return (
-                    from i in database.Table<Colectivo>()
-                    join p in database.Table<Parada>() 
-                    on i.id equals p.colectivo
-                    where p.calle == calle && p.interseccion == intereccion
-                    select i
-                ).ToList();
+                return database.Query<Colectivo>(
+                        @"select colectivos.* from paradas 
+                          inner join colectivos on colectivos.id = paradas.idColectivo
+                          where paradas.idCalle = ? and paradas.idInter = ?
+                          group by paradas.idColectivo 
+                          order by colectivos.name", calle ,intereccion);
             }
         }
 
@@ -73,59 +72,55 @@ namespace CuandoLlegaXamarin
             }
         }
         
-        public IEnumerable<Calle> GetCalles(string name = "")
+        public IEnumerable<Calle> GetCalles(int ? colectivo = null, string name = "")
         {
             lock (locker)
             {
-                return database.Query<Calle>(
-                    @"select calles.* from paradas 
-                      inner join calles on calles.id = paradas.idCalle 
-                      where calles.desc like ? 
-                      group by paradas.idCalle 
-                      order by calles.desc", '%' + name + '%');
+                if (colectivo != null)
+                {
+                    return database.Query<Calle>(
+                        @"select calles.* from paradas 
+                          inner join calles on calles.id = paradas.idCalle 
+                          where calles.desc like ? and paradas.idColectivo = ?  
+                          group by paradas.idCalle 
+                          order by calles.desc", '%' + name + '%', colectivo.Value);
+                }
+                else
+                {
+                    return database.Query<Calle>(
+                        @"select calles.* from paradas 
+                          inner join calles on calles.id = paradas.idCalle 
+                          where calles.desc like ?   
+                          group by paradas.idCalle 
+                          order by calles.desc", '%' + name + '%');
+                }
             }
         }
 
-        public IEnumerable<Calle> GetCalles(int colectivo, string name = "")
+        public IEnumerable<Calle> GetIntersecciones(int ? colectivo = null, int ? calle = null, string name = "")
         {
             lock (locker)
             {
-                return database.Query<Calle>(
-                    @"select calles.* from paradas 
-                      inner join calles on calles.id = paradas.idCalle 
-                      where calles.desc like ? and paradas.idColectivo = ?  
-                      group by paradas.idCalle 
-                      order by calles.desc", '%' + name + '%', colectivo);
-            }
-        }
-
-        public IEnumerable<Calle> GetIntersecciones(int colectivo, int calle, string name = "")
-        {
-            lock (locker)
-            {
-                return database.Query<Calle>(
-                    @"select calles.* from paradas 
+                if (colectivo != null)
+                {
+                    return database.Query<Calle>(
+                        @"select calles.* from paradas 
                       inner join calles on calles.id = paradas.idInter 
                       where calles.desc like ? and paradas.idColectivo = ?  and paradas.idCalle = ?
                       group by paradas.idInter 
                       order by calles.desc", '%' + name + '%', colectivo, calle);
-            }
-        }
-
-        public IEnumerable<Calle> GetIntersecciones(int calle, string name = "")
-        {
-            lock (locker)
-            {
-                return database.Query<Calle>(
-                    @"select calles.* from paradas 
+                } else
+                {
+                    return database.Query<Calle>(
+                        @"select calles.* from paradas 
                       inner join calles on calles.id = paradas.idInter 
-                      where calles.desc like ? and  paradas.idCalle = ?
+                      where calles.desc like ? and paradas.idCalle = ?
                       group by paradas.idInter 
                       order by calles.desc", '%' + name + '%', calle);
+                }
             }
         }
-
-
+ 
         /*
          * 
          * PARADAS QUERYS

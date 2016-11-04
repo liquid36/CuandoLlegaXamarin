@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CuandoLlegaXamarin.Views.BusquedaTab"
-             x:Title="Cuando Llega">
+             Title="Cuando Llega">
   <ContentPage.Content>
     <StackLayout Padding="0,20,0,0">
       <Button Text="Por Calle"   x:Name="btnCalle" Style="{StaticResource buttonStyle}" />
